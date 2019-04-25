@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+{% load bootstrap %}
+{%block tittle%}Listagem de Produtos{%endblock%}
+
+{%block body%}
+<div class="row">
+    <div class="col-4">
+        <a href="{% url 'novo_produto'%}" class="btn btn-success">
+            <i class="fas fa-plus-circle"></i>
+            Novo produto</a>
+
+        <a href="{%url 'logout' %}">
+            <span class="badge badge-danger">
+                <i class="fas fa-sign-out-alt"></i>
+             Sair</span> </a>
+    </div>
+    <div class="col-6">
+        <h3>Listagem de produtos</h3>
+
+        <ul class="list-group">
+            {%for p in produtos%}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {%if p.situacao%}
+                <span class="badge badge-primary badge-success">{{p.nome}}</span>
+                {%else%}
+                <span class="badge badge-primary badge-secondary">{{p.nome}}</span>
+                {%endif%}
+                <span class="badge badge-primary badge-pill">R${{p.preco}}</span>
+                <a href="{%url 'delete_produto' p.id%}"><span class="badge badge-danger badge-pill"><i class="fas fa-trash"></i></span></a>
+                <a href="{%url 'update_produto' p.id%}"><span class="badge badge-info badge-pill"><i class="fas fa-edit"></i></span></a>
+            </li>
+            {%endfor%}
+        </ul>
+
+    </div>
+</div>
+{%endblock%}

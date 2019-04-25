@@ -1,0 +1,12 @@
+{%extends 'base_no_footer.html'%}
+{% load bootstrap %}
+{%block tittle%}Novo Produto{%endblock%}
+{%block body%}
+      <h3>Novo produto</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <button class="btn btn-primary" type="submit">Salve</button>
+    </form>
+
+{%endblock%}
